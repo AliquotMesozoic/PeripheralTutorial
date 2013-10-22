@@ -3,6 +3,7 @@ package bubba.cctutorial.tile;
 import dan200.computer.api.IComputerAccess;
 import dan200.computer.api.ILuaContext;
 import dan200.computer.api.IPeripheral;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -25,7 +26,7 @@ public class TileEntityBlockPeripheral extends TileEntity implements IPeripheral
 		/* Purpose 1) When a computer makes a peripheral.getMethods call, an unpacked table of these methods is returned
 		 * Purpose 2) When the callMethod method (below) is called, it refers to this method to check which method is to be executed. More on this in a bi 
 		 */
-		return new String[] {"method1", "method2"}; //Give us a few methods to mess around with
+		return new String[] {"method1", "method2", "echo"}; //Give us a few methods to mess around with
 	}
 
 	@Override
@@ -43,6 +44,17 @@ public class TileEntityBlockPeripheral extends TileEntity implements IPeripheral
 			return new Object[] {"You called method1!"};
 		case 1:
 			return new Object[] {"You called method2"};
+		
+		case 2: { //This is our echo method
+			Object[] returnObject = new Object[10]; //Note that this method supports only up to 10 arguments
+			for (int k=0; k<arguments.length; k++) {
+				//returnObject[k] = "You said: " + ((String) arguments[k]);
+				returnObject[k] = "You said: " + arguments[k];
+			}
+			
+			return returnObject;
+		}
+			
 		default:
 			return new Object[] {"Invalid method alert"};
 		}
