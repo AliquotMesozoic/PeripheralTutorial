@@ -36,6 +36,7 @@ public class TileEntityExample extends TileEntity implements IPeripheral {
 			float explosionSize = ((Number) arguments[3]).floatValue();
 			EntityCreeper exploder = new EntityCreeper(theWorld);
 			theWorld.createExplosion(exploder, explosionX, explosionY, explosionZ, explosionSize, true);
+			exploder.setDead();
 			return new Object[] {true};
 		} default:
 			return null;
