@@ -10,6 +10,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid="bubba.cctutorial", dependencies="required-after:ComputerCraft;after:CCTurtle")
+@NetworkMod(clientSideRequired=true, serverSideRequired=false) //Note that this has not yet been inserted to the tutorial
 
 public class ExampleCore {
 	public BlockExample blockInstance = new BlockExample(496, Material.ground);
